@@ -1,0 +1,15 @@
+{
+  "model": "qwen3.5:4b",
+  "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+  "fixture_sha256": "fb8eeaa2ab66b566429e46aaba22752f86583ed2bd4b4bd8bfbdf76976df3b14",
+  "results": [
+    {
+      "id": "dev-clarify",
+      "question": "When should I submit my claim?",
+      "error": "Invalid researcher output after repair: 1 validation error for Research\n  Value error, clarify requires a clarification question [type=value_error, input_value={'scope_check': \"The user..., 'clarification': None}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/value_error",
+      "elapsed_seconds": 11.49,
+      "trace": "results\\traces\\dev-589e55ddbd874f8a8234297132350945.jsonl",
+      "model_calls": 3
+    }
+  ]
+}

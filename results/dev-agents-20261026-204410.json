@@ -1,0 +1,93 @@
+{
+  "model": "qwen3.5:4b",
+  "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+  "fixture_sha256": "fb8eeaa2ab66b566429e46aaba22752f86583ed2bd4b4bd8bfbdf76976df3b14",
+  "results": [
+    {
+      "id": "dev-direct",
+      "question": "When must I submit my travel expense claim?",
+      "error": "Agent referenced an unknown evidence ID",
+      "elapsed_seconds": 3.51,
+      "trace": "results\\traces\\dev-bd29a032762c4da7a7465d6df25fd0cf.jsonl",
+      "model_calls": 2
+    },
+    {
+      "id": "dev-clarify",
+      "question": "When should I submit my claim?",
+      "final": {
+        "status": "answered",
+        "answer": "You should submit your travel expense claim within 30 calendar days after returning from the trip.",
+        "source_ids": [
+          "expenses/travel-deadline"
+        ]
+      },
+      "evidence": [
+        {
+          "chunk_id": "expenses/travel-deadline",
+          "document_id": "expenses",
+          "section_id": "travel-deadline",
+          "text": "Travel expense claims\nEmployees must submit travel expense claims within 30 calendar days after returning from the trip."
+        },
+        {
+          "chunk_id": "expenses/travel-evidence",
+          "document_id": "expenses",
+          "section_id": "travel-evidence",
+          "text": "Travel receipts and approval\nEvery travel expense claim requires itemized receipts. The employee's line manager approves the claim before Finance processes payment."
+        },
+        {
+          "chunk_id": "expenses/medical-deadline",
+          "document_id": "expenses",
+          "section_id": "medical-deadline",
+          "text": "Medical reimbursement claims\nEmployees must submit medical reimbursement claims within 60 calendar days after treatment."
+        }
+      ],
+      "clarified": true,
+      "pending": null,
+      "elapsed_seconds": 11.46,
+      "trace": "results\\traces\\dev-85c19d00c1b243148f0b8a85925c4671.jsonl",
+      "model_calls": 6
+    },
+    {
+      "id": "dev-missing",
+      "question": "What is the monthly parking reimbursement limit?",
+      "final": {
+        "status": "abstained",
+        "answer": "The supplied policies do not provide enough information for a supported answer. The requested policy (monthly parking reimbursement limit) is absent from the supplied evidence. The available documents only cover deadlines for medical and travel claims and general travel receipt requirements. No information regarding parking exists in the provided chunks.",
+        "source_ids": []
+      },
+      "evidence": [
+        {
+          "chunk_id": "expenses/medical-deadline",
+          "document_id": "expenses",
+          "section_id": "medical-deadline",
+          "text": "Medical reimbursement claims\nEmployees must submit medical reimbursement claims within 60 calendar days after treatment."
+        },
+        {
+          "chunk_id": "expenses/travel-deadline",
+          "document_id": "expenses",
+          "section_id": "travel-deadline",
+          "text": "Travel expense claims\nEmployees must submit travel expense claims within 30 calendar days after returning from the trip."
+        },
+        {
+          "chunk_id": "expenses/travel-evidence",
+          "document_id": "expenses",
+          "section_id": "travel-evidence",
+          "text": "Travel receipts and approval\nEvery travel expense claim requires itemized receipts. The employee's line manager approves the claim before Finance processes payment."
+        }
+      ],
+      "clarified": false,
+      "pending": null,
+      "elapsed_seconds": 16.19,
+      "trace": "results\\traces\\dev-396250b8c9b246b494dcadab70446b17.jsonl",
+      "model_calls": 4
+    },
+    {
+      "id": "dev-contact",
+      "question": "Which team receives a suspected security incident report?",
+      "error": "Agent referenced an unknown evidence ID",
+      "elapsed_seconds": 3.43,
+      "trace": "results\\traces\\dev-f032619309394544aa1e1191699c844b.jsonl",
+      "model_calls": 2
+    }
+  ]
+}
