@@ -1,0 +1,10 @@
+# Synthetic company access policy
+
+## approval | System access approval
+All system access requests require approval from the system owner. Submit the request through the IT service portal.
+
+## temporary-duration | Temporary system access
+Temporary system access expires after 7 calendar days. Renewal requires a new request and system owner approval.
+
+## permanent-review | Permanent system access
+Permanent system access is reviewed every 90 calendar days. It does not have a fixed automatic expiry date under this policy.

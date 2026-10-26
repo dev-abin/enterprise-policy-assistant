@@ -1,0 +1,13 @@
+# Synthetic company expenses policy
+
+## travel-deadline | Travel expense claims
+Employees must submit travel expense claims within 30 calendar days after returning from the trip.
+
+## travel-evidence | Travel receipts and approval
+Every travel expense claim requires itemized receipts. The employee's line manager approves the claim before Finance processes payment.
+
+## medical-deadline | Medical reimbursement claims
+Employees must submit medical reimbursement claims within 60 calendar days after treatment.
+
+## medical-evidence | Medical claim documents
+Medical reimbursement claims require the hospital invoice and proof of payment. Submit both documents to the Benefits team.

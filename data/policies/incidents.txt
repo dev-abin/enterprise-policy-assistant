@@ -1,0 +1,7 @@
+# Synthetic company incidents policy
+
+## reporting | Security incident reporting
+Report a suspected security incident to the Security Operations team within 15 minutes of discovery using the incident portal.
+
+## closure | Security incident closure
+Only the Security Operations lead may close a security incident, after recording containment evidence and a root-cause summary.

@@ -1,0 +1,4 @@
+{"id": "dev-direct", "question": "When must I submit my travel expense claim?", "facts": ["30 calendar days after returning"], "sources": ["expenses/travel-deadline"]}
+{"id": "dev-clarify", "question": "When should I submit my claim?", "reply": "A travel expense claim.", "facts": ["30 calendar days after returning"], "sources": ["expenses/travel-deadline"]}
+{"id": "dev-missing", "question": "What is the monthly parking reimbursement limit?", "abstain": true, "facts": [], "sources": []}
+{"id": "dev-contact", "question": "Which team receives a suspected security incident report?", "facts": ["Security Operations team"], "sources": ["incidents/reporting"]}

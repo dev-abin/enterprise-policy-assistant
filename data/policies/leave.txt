@@ -1,0 +1,7 @@
+# Synthetic company leave policy
+
+## annual-notice | Annual leave requests
+Submit annual leave requests in the leave portal at least 10 working days before the first day of leave.
+
+## sick-notice | Sick leave notification
+Notify the line manager of sick leave before 10:00 a.m. on the first day of absence.

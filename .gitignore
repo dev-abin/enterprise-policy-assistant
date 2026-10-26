@@ -1,0 +1,9 @@
+.venv/
+reference/
+.env
+__pycache__/
+.pytest_cache/
+.runtime/
+*.docx
+results/traces/live-*.jsonl
+results/traces/test-*.jsonl
