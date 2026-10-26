@@ -74,7 +74,9 @@ def build_graph(agents, trace):
             return {"next": "finish", "final": Final(status="abstained" if draft["abstain"] else "answered",
                 answer=draft["answer"], source_ids=draft["source_ids"]).model_dump()}
         if verdict == "abstain":
-            return abstain(feedback)
+            # Review feedback is diagnostic, not independently verified answer text.
+            # Keep it in the trace; do not promote its process claims to user output.
+            return abstain("The verifier could not establish support in the retrieved policy sections.")
         if state["corrections"] >= 1:
             return abstain("The draft could not be verified within the correction limit.")
         return {"feedback": feedback, "corrections": state["corrections"] + 1,

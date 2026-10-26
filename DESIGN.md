@@ -1,6 +1,8 @@
 # Enterprise policy question answering design
 
-Status: proposed design for review; implementation has not started.
+Status: local implementation completed and verified. This document preserves the reviewed design; see `REQUIREMENT_CHECK.md` for actual completion/deferred status, `README.md` for running the app, and `results/error_analysis.md` for measured outcomes.
+
+Implementation refinements: CPU MiniLM uses Chroma's ONNX implementation; source IDs are rendered in the Sources panel instead of requiring inline brackets; scope checks and non-null clarification objects improve local-model reliability. Semantic scoring was inspected by the coding assistant, not independently by a human. The evaluation is question-level with some shared policy facts. Original held-out scores are preserved after a small finalization bug was fixed and regression-tested. No production or submission deliverables were added.
 
 Sources: `REQUIREMENTS.md`, cross-checked against `Avathon_AI_Hiring_Challenge.docx`. Scope: Track A, Scenario S2. Submission preparation is deferred at your request, but its explicit requirements remain recorded below.
 

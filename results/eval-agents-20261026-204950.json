@@ -1,0 +1,293 @@
+{
+  "model": "qwen3.5:4b",
+  "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+  "fixture_sha256": "879ae73c0427d442fccb5a2bfd29f6bc3659d3b9a0144c1e30a0b583a95edf5b",
+  "results": [
+    {
+      "id": "eval-01",
+      "question": "Which documents do I need for medical reimbursement, and where do I submit them?",
+      "final": {
+        "status": "answered",
+        "answer": "To submit a medical reimbursement claim, you need the hospital invoice and proof of payment. Submit both documents to the Benefits team.",
+        "source_ids": [
+          "expenses/medical-evidence"
+        ]
+      },
+      "evidence": [
+        {
+          "chunk_id": "expenses/medical-evidence",
+          "document_id": "expenses",
+          "section_id": "medical-evidence",
+          "text": "Medical claim documents\nMedical reimbursement claims require the hospital invoice and proof of payment. Submit both documents to the Benefits team."
+        },
+        {
+          "chunk_id": "expenses/medical-deadline",
+          "document_id": "expenses",
+          "section_id": "medical-deadline",
+          "text": "Medical reimbursement claims\nEmployees must submit medical reimbursement claims within 60 calendar days after treatment."
+        },
+        {
+          "chunk_id": "expenses/travel-evidence",
+          "document_id": "expenses",
+          "section_id": "travel-evidence",
+          "text": "Travel receipts and approval\nEvery travel expense claim requires itemized receipts. The employee's line manager approves the claim before Finance processes payment."
+        }
+      ],
+      "clarified": false,
+      "pending": null,
+      "elapsed_seconds": 7.13,
+      "trace": "results\\traces\\eval-635b5cee97484706abeefe20d3c78db1.jsonl",
+      "model_calls": 4
+    },
+    {
+      "id": "eval-02",
+      "question": "How much notice is required for annual leave and which channel should I use?",
+      "final": {
+        "status": "answered",
+        "answer": "You must submit annual leave requests in the leave portal at least 10 working days before the first day of leave.",
+        "source_ids": [
+          "leave/annual-notice"
+        ]
+      },
+      "evidence": [
+        {
+          "chunk_id": "leave/annual-notice",
+          "document_id": "leave",
+          "section_id": "annual-notice",
+          "text": "Annual leave requests\nSubmit annual leave requests in the leave portal at least 10 working days before the first day of leave."
+        },
+        {
+          "chunk_id": "leave/sick-notice",
+          "document_id": "leave",
+          "section_id": "sick-notice",
+          "text": "Sick leave notification\nNotify the line manager of sick leave before 10:00 a.m. on the first day of absence."
+        },
+        {
+          "chunk_id": "expenses/travel-deadline",
+          "document_id": "expenses",
+          "section_id": "travel-deadline",
+          "text": "Travel expense claims\nEmployees must submit travel expense claims within 30 calendar days after returning from the trip."
+        }
+      ],
+      "clarified": false,
+      "pending": null,
+      "elapsed_seconds": 7.35,
+      "trace": "results\\traces\\eval-b944a69b5fff48ac83db9ea8a1f4d183.jsonl",
+      "model_calls": 4
+    },
+    {
+      "id": "eval-03",
+      "question": "Who must approve system access and where do I request it?",
+      "final": {
+        "status": "answered",
+        "answer": "System access must be approved by the system owner. Requests should be submitted through the IT service portal.",
+        "source_ids": [
+          "access/approval"
+        ]
+      },
+      "evidence": [
+        {
+          "chunk_id": "access/approval",
+          "document_id": "access",
+          "section_id": "approval",
+          "text": "System access approval\nAll system access requests require approval from the system owner. Submit the request through the IT service portal."
+        },
+        {
+          "chunk_id": "access/permanent-review",
+          "document_id": "access",
+          "section_id": "permanent-review",
+          "text": "Permanent system access\nPermanent system access is reviewed every 90 calendar days. It does not have a fixed automatic expiry date under this policy."
+        },
+        {
+          "chunk_id": "access/temporary-duration",
+          "document_id": "access",
+          "section_id": "temporary-duration",
+          "text": "Temporary system access\nTemporary system access expires after 7 calendar days. Renewal requires a new request and system owner approval."
+        }
+      ],
+      "clarified": false,
+      "pending": null,
+      "elapsed_seconds": 6.41,
+      "trace": "results\\traces\\eval-795b3d5a7a7a459788698fcda64e9b7b.jsonl",
+      "model_calls": 4
+    },
+    {
+      "id": "eval-04",
+      "question": "For travel reimbursement, when must I claim, what evidence is needed, and who approves it?",
+      "final": {
+        "status": "answered",
+        "answer": "For travel reimbursement, you must submit your claim within 30 calendar days after returning from the trip. You need itemized receipts for every expense. Your line manager must approve the claim before Finance processes payment.",
+        "source_ids": [
+          "expenses/travel-deadline",
+          "expenses/travel-evidence"
+        ]
+      },
+      "evidence": [
+        {
+          "chunk_id": "expenses/travel-evidence",
+          "document_id": "expenses",
+          "section_id": "travel-evidence",
+          "text": "Travel receipts and approval\nEvery travel expense claim requires itemized receipts. The employee's line manager approves the claim before Finance processes payment."
+        },
+        {
+          "chunk_id": "expenses/travel-deadline",
+          "document_id": "expenses",
+          "section_id": "travel-deadline",
+          "text": "Travel expense claims\nEmployees must submit travel expense claims within 30 calendar days after returning from the trip."
+        },
+        {
+          "chunk_id": "expenses/medical-deadline",
+          "document_id": "expenses",
+          "section_id": "medical-deadline",
+          "text": "Medical reimbursement claims\nEmployees must submit medical reimbursement claims within 60 calendar days after treatment."
+        }
+      ],
+      "clarified": false,
+      "pending": null,
+      "elapsed_seconds": 7.01,
+      "trace": "results\\traces\\eval-b29141d23f834097a07313d2e231eedc.jsonl",
+      "model_calls": 4
+    },
+    {
+      "id": "eval-05",
+      "question": "How quickly must I report a suspected security incident, and who can close it with what evidence?",
+      "final": {
+        "status": "answered",
+        "answer": "You must report a suspected security incident to the Security Operations team within 15 minutes of discovery. A security incident can only be closed by the Security Operations lead, who must record containment evidence and a root-cause summary.",
+        "source_ids": [
+          "incidents/reporting",
+          "incidents/closure"
+        ]
+      },
+      "evidence": [
+        {
+          "chunk_id": "incidents/reporting",
+          "document_id": "incidents",
+          "section_id": "reporting",
+          "text": "Security incident reporting\nReport a suspected security incident to the Security Operations team within 15 minutes of discovery using the incident portal."
+        },
+        {
+          "chunk_id": "incidents/closure",
+          "document_id": "incidents",
+          "section_id": "closure",
+          "text": "Security incident closure\nOnly the Security Operations lead may close a security incident, after recording containment evidence and a root-cause summary."
+        },
+        {
+          "chunk_id": "access/permanent-review",
+          "document_id": "access",
+          "section_id": "permanent-review",
+          "text": "Permanent system access\nPermanent system access is reviewed every 90 calendar days. It does not have a fixed automatic expiry date under this policy."
+        }
+      ],
+      "clarified": false,
+      "pending": null,
+      "elapsed_seconds": 7.53,
+      "trace": "results\\traces\\eval-85a6bdc3859e4ad3a27e67188f3c6f87.jsonl",
+      "model_calls": 4
+    },
+    {
+      "id": "eval-06",
+      "question": "How long does my system access last?",
+      "final": {
+        "status": "answered",
+        "answer": "Your temporary system access expires after 7 calendar days.",
+        "source_ids": [
+          "access/temporary-duration"
+        ]
+      },
+      "evidence": [
+        {
+          "chunk_id": "access/temporary-duration",
+          "document_id": "access",
+          "section_id": "temporary-duration",
+          "text": "Temporary system access\nTemporary system access expires after 7 calendar days. Renewal requires a new request and system owner approval."
+        },
+        {
+          "chunk_id": "access/permanent-review",
+          "document_id": "access",
+          "section_id": "permanent-review",
+          "text": "Permanent system access\nPermanent system access is reviewed every 90 calendar days. It does not have a fixed automatic expiry date under this policy."
+        },
+        {
+          "chunk_id": "incidents/reporting",
+          "document_id": "incidents",
+          "section_id": "reporting",
+          "text": "Security incident reporting\nReport a suspected security incident to the Security Operations team within 15 minutes of discovery using the incident portal."
+        }
+      ],
+      "clarified": true,
+      "pending": null,
+      "elapsed_seconds": 10.12,
+      "trace": "results\\traces\\eval-9d874794b7064a35a37e39eabcd40d90.jsonl",
+      "model_calls": 6
+    },
+    {
+      "id": "eval-07",
+      "question": "What annual bonus percentage am I entitled to?",
+      "final": {
+        "status": "abstained",
+        "answer": "The supplied policies do not provide enough information for a supported answer. The requested policy (annual bonus percentage) is absent from the retrieved evidence. The available documents only cover medical reimbursement deadlines, required claim documents, and permanent system access review cycles. No clarification is needed as the user's question cannot be answered with the current data.",
+        "source_ids": []
+      },
+      "evidence": [
+        {
+          "chunk_id": "expenses/medical-deadline",
+          "document_id": "expenses",
+          "section_id": "medical-deadline",
+          "text": "Medical reimbursement claims\nEmployees must submit medical reimbursement claims within 60 calendar days after treatment."
+        },
+        {
+          "chunk_id": "expenses/medical-evidence",
+          "document_id": "expenses",
+          "section_id": "medical-evidence",
+          "text": "Medical claim documents\nMedical reimbursement claims require the hospital invoice and proof of payment. Submit both documents to the Benefits team."
+        },
+        {
+          "chunk_id": "access/permanent-review",
+          "document_id": "access",
+          "section_id": "permanent-review",
+          "text": "Permanent system access\nPermanent system access is reviewed every 90 calendar days. It does not have a fixed automatic expiry date under this policy."
+        }
+      ],
+      "clarified": false,
+      "pending": null,
+      "elapsed_seconds": 9.37,
+      "trace": "results\\traces\\eval-6f62e1abcfe2480797b365cd7421331a.jsonl",
+      "model_calls": 4
+    },
+    {
+      "id": "eval-08",
+      "question": "What is the daily meal allowance amount for international travel?",
+      "final": {
+        "status": "abstained",
+        "answer": "The supplied policies do not provide enough information for a supported answer. The requested information (daily meal allowance amount) is not present in any of the retrieved documents. The evidence only covers procedural aspects (receipt requirements, approval processes, claim deadlines). No search for a specific monetary policy document was performed or indicated as available.",
+        "source_ids": []
+      },
+      "evidence": [
+        {
+          "chunk_id": "expenses/travel-evidence",
+          "document_id": "expenses",
+          "section_id": "travel-evidence",
+          "text": "Travel receipts and approval\nEvery travel expense claim requires itemized receipts. The employee's line manager approves the claim before Finance processes payment."
+        },
+        {
+          "chunk_id": "expenses/travel-deadline",
+          "document_id": "expenses",
+          "section_id": "travel-deadline",
+          "text": "Travel expense claims\nEmployees must submit travel expense claims within 30 calendar days after returning from the trip."
+        },
+        {
+          "chunk_id": "leave/annual-notice",
+          "document_id": "leave",
+          "section_id": "annual-notice",
+          "text": "Annual leave requests\nSubmit annual leave requests in the leave portal at least 10 working days before the first day of leave."
+        }
+      ],
+      "clarified": false,
+      "pending": null,
+      "elapsed_seconds": 10.8,
+      "trace": "results\\traces\\eval-b5d140b796124de3b01e447fd629a31a.jsonl",
+      "model_calls": 4
+    }
+  ]
+}

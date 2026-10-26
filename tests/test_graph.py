@@ -102,6 +102,17 @@ def test_blank_reply_is_not_approval():
         HumanReply(action="confirm", text=" ")
 
 
+def test_abstention_does_not_publish_unverified_diagnostics(tmp_path):
+    agents = Agents()
+    agents.verify = lambda state: Review(scope_check="Scope clear", verdict="abstain",
+        feedback="No search was performed. This is an unverified process claim.", source_ids=[])
+    graph, trace, config, state = setup(tmp_path, agents)
+    result = graph.invoke(state, config)
+    assert result["final"]["status"] == "abstained"
+    assert "No search" not in result["final"]["answer"]
+    assert not result["final"]["source_ids"]
+
+
 def test_trace_never_overwrites(tmp_path):
     Trace(tmp_path / "x.jsonl", "a")
     with pytest.raises(FileExistsError):

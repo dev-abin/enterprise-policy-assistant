@@ -1,0 +1,173 @@
+{
+  "reviewer": "Coding assistant inspection of saved outputs against source text; not an independent human or blinded evaluation.",
+  "agents_file": "eval-agents-20261026-204950.json",
+  "baseline_file": "eval-baseline-20261026-205117.json",
+  "metric_definition": "Overall correctness requires all requested facts or justified abstention and no added false factual/process assertion. Citation support counts atomic company-policy claims in non-abstaining answers; abstentions and process commentary are excluded from that denominator but checked for overall correctness.",
+  "records": [
+    {
+      "id": "eval-01",
+      "agents": {
+        "correct": true,
+        "supported_claims": [
+          "Hospital invoice required",
+          "Proof of payment required",
+          "Submit to Benefits team"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree; missing cases correctly abstain."
+      },
+      "baseline": {
+        "correct": true,
+        "supported_claims": [
+          "Hospital invoice required",
+          "Proof of payment required",
+          "Submit to Benefits team",
+          "Within 60 calendar days after treatment"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree."
+      }
+    },
+    {
+      "id": "eval-02",
+      "agents": {
+        "correct": true,
+        "supported_claims": [
+          "At least 10 working days before first leave day",
+          "Use leave portal"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree; missing cases correctly abstain."
+      },
+      "baseline": {
+        "correct": true,
+        "supported_claims": [
+          "At least 10 working days before first leave day",
+          "Use leave portal"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree."
+      }
+    },
+    {
+      "id": "eval-03",
+      "agents": {
+        "correct": true,
+        "supported_claims": [
+          "System owner approves",
+          "Use IT service portal"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree; missing cases correctly abstain."
+      },
+      "baseline": {
+        "correct": true,
+        "supported_claims": [
+          "System owner approves",
+          "Use IT service portal"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree."
+      }
+    },
+    {
+      "id": "eval-04",
+      "agents": {
+        "correct": true,
+        "supported_claims": [
+          "Within 30 calendar days after returning",
+          "Itemized receipts required",
+          "Line manager approves before Finance processes payment"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree; missing cases correctly abstain."
+      },
+      "baseline": {
+        "correct": true,
+        "supported_claims": [
+          "Within 30 calendar days after returning",
+          "Itemized receipts required",
+          "Line manager approves before Finance processes payment"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree."
+      }
+    },
+    {
+      "id": "eval-05",
+      "agents": {
+        "correct": true,
+        "supported_claims": [
+          "Report to Security Operations team",
+          "Within 15 minutes of discovery",
+          "Only Security Operations lead closes",
+          "Containment evidence recorded",
+          "Root-cause summary recorded"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree; missing cases correctly abstain."
+      },
+      "baseline": {
+        "correct": true,
+        "supported_claims": [
+          "Report to Security Operations team",
+          "Within 15 minutes of discovery",
+          "Only Security Operations lead closes",
+          "Containment evidence recorded",
+          "Root-cause summary recorded"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree."
+      }
+    },
+    {
+      "id": "eval-06",
+      "agents": {
+        "correct": true,
+        "supported_claims": [
+          "Temporary access expires after 7 calendar days"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree; missing cases correctly abstain."
+      },
+      "baseline": {
+        "correct": true,
+        "supported_claims": [
+          "Temporary access expires after 7 calendar days"
+        ],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree."
+      }
+    },
+    {
+      "id": "eval-07",
+      "agents": {
+        "correct": true,
+        "supported_claims": [],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree; missing cases correctly abstain."
+      },
+      "baseline": {
+        "correct": true,
+        "supported_claims": [],
+        "unsupported_claims": [],
+        "note": "Required facts and cited evidence agree."
+      }
+    },
+    {
+      "id": "eval-08",
+      "agents": {
+        "correct": false,
+        "supported_claims": [],
+        "unsupported_claims": [],
+        "note": "Correctly abstains but adds an unsupported process assertion: says no search for a specific monetary policy was performed; actual tool query was 'daily meal allowance amount international travel'. Count as incorrect overall."
+      },
+      "baseline": {
+        "correct": true,
+        "supported_claims": [],
+        "unsupported_claims": [],
+        "note": "Correct abstention; cites irrelevant retrieved records, an unnecessary citation choice, but does not invent a policy amount."
+      }
+    }
+  ]
+}

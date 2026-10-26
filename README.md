@@ -83,6 +83,10 @@ Human demonstration: in the UI ask “When should I submit my claim?” and answ
 
 Results and scoring details: `results/error_analysis.md` and `results/evaluation.json`. Score counts are small-sample observations, not production accuracy estimates. Citation support requires checking the actual cited excerpts, not merely checking that an ID exists.
 
+Recorded frozen results: agents 7/8 correct versus baseline 8/8; both abstained on 2/2 unsupported questions. A verifier diagnostic leaked an unsupported search-process claim into one final abstention. That finalization issue was fixed afterward and checked as a regression; the original held-out score is preserved. There are 13 passing focused tests, plus a real Streamlit/Ollama integration check and a real requester clarification trace.
+
+`scripts/summarize_results.py` reproduces aggregate metrics from the saved assistant-reviewed labels in `results/reviewed_scores.json`. It does not automatically judge new outputs. For a fresh run, inspect answers and cited evidence and record new labels before aggregating; do not blindly reuse these scores. `scripts/regression_abstention.py` checks the post-evaluation fix separately.
+
 ## Failure handling and limits
 
 Source IDs are constrained to retrieved records. The verifier checks claim support and requested facts. There is one correction loop, at most three searches, and one clarification exchange. Invalid model outputs get one repair attempt; tool or runtime errors remain visible errors. Missing facts are not replaced by Wikipedia or model knowledge. These mechanisms reduce risk but do not guarantee correctness or prompt-injection resistance.
@@ -94,3 +98,5 @@ With more time: evaluate real permissioned policies, test a stronger model if fa
 ## Submission status
 
 Local implementation first, as requested. Repository publishing/access, narrated video (maximum five minutes), its README link, and the final 1–2 page PDF are deferred. No video URL exists yet. The recruiter supplies the submission link and any private-reviewer handle. No submission has been made.
+
+See `REQUIREMENT_CHECK.md` for the item-by-item coverage and assumptions.
