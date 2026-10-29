@@ -2,20 +2,20 @@
 
 ## Frozen evaluation
 
-Implementation evaluated: commit `1c0adf84e52e581e5f17193f608f1cbde8641e30`. Data fixtures were committed before development in `04fb44e`. The eight held-out questions were run once per system after development checks. The system received the policy corpus but not expected answers. No model weights were trained.
+Implementation evaluated: commit `1c0adf84e52e581e5f17193f608f1cbde8641e30`. Data fixtures were committed before development in `04fb44e`. The eight held-out questions were run once after development checks. The system received the policy corpus but not expected answers. No model weights were trained.
 
-Model: installed `qwen3.5:4b`, digest `2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd`. Ollama 0.34.4, Python 3.12.10, RTX 4060 Laptop 8 GB, approximately 32 GB system RAM. Both systems used identical model settings and corpus. The baseline used one fixed retrieval and one answer call. For its ambiguous case, the user clarification was supplied upfront; therefore that comparison tests answer quality with matched scope, not baseline clarification ability.
+Model: installed `qwen3.5:4b`, digest `2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd`. Ollama 0.34.4, Python 3.12.10, RTX 4060 Laptop 8 GB, approximately 32 GB system RAM. The ambiguous case used a predefined simulated reply containing only the missing user circumstance.
 
-| Metric | Three-agent graph | Single-pass baseline |
-|---|---:|---:|
-| Overall correct responses | 7/8 (87.5%) | 8/8 (100%) |
-| Supported policy claims in non-abstaining answers | 16/16 | 17/17 |
-| Correct abstentions on unsupported questions | 2/2 | 2/2 |
-| Unnecessary abstentions on answerable questions | 0/6 | 0/6 |
-| Mean elapsed time per question | 8.21 s | 1.42 s |
-| Median elapsed time per question | 7.44 s | 1.40 s |
-| Total model calls | 34 | 8 |
-| Clarification on ambiguous access question | Yes, then resumed | Not tested; supplied matched scope |
+| Metric | Three-agent graph |
+|---|---:|
+| Overall correct responses | 7/8 (87.5%) |
+| Supported policy claims in non-abstaining answers | 16/16 |
+| Correct abstentions on unsupported questions | 2/2 |
+| Unnecessary abstentions on answerable questions | 0/6 |
+| Mean elapsed time per question | 8.21 s |
+| Median elapsed time per question | 7.44 s |
+| Total model calls | 34 |
+| Clarification on ambiguous access question | Yes, then resumed |
 
 Counts were reviewed by the coding assistant against source text, not by an independent human or a blinded judge. `reviewed_scores.json` records the reviewed claims and per-case decisions; `summarize_results.py` aggregates those labels into `evaluation.json`. The aggregation is reproducible; semantic review is not an automatic benchmark. Citation support excludes abstentions/process commentary but overall correctness includes false extra assertions, which explains the differing scores.
 
@@ -23,19 +23,17 @@ Timing is one local run, with warmed model state and simulated evaluation replie
 
 ## Held-out failure and subsequent fix
 
-`eval-08` asked for the daily international-travel meal allowance, which is absent. Both systems correctly abstained. However, the graph copied verifier feedback into its final answer, including: “No search for a specific monetary policy document was performed or indicated as available.” The actual tool query was `daily meal allowance amount international travel`. This unnecessary process assertion was unsupported, so the graph's response was marked incorrect overall despite its correct abstention.
+`eval-08` asked for the daily international-travel meal allowance, which is absent. The graph correctly abstained. However, it copied verifier feedback into its final answer, including: “No search for a specific monetary policy document was performed or indicated as available.” The actual tool query was `daily meal allowance amount international travel`. This unnecessary process assertion was unsupported, so the graph's response was marked incorrect overall despite its correct abstention.
 
 Root cause: diagnostic feedback was promoted into user-facing text without verification. The verifier reviewed the writer's draft but not the new text introduced by the finalization node.
 
-After recording the frozen results, finalization was changed to use a fixed evidence-limitation statement for verifier-requested abstentions. Full feedback remains available in the trace. A focused test and `scripts/regression_abstention.py` verify this fix. `post_evaluation_regression.json` records its outcome. The original 7/8 score is preserved; the regression is not a fresh held-out evaluation and no new 8/8 generalization claim is made.
-
-The baseline attached unrelated retrieved IDs to its last abstention. It did not invent the requested amount, so this was recorded as an unnecessary citation choice rather than a wrong policy answer.
+After recording the frozen results, finalization was changed to use a fixed evidence-limitation statement for verifier-requested abstentions. Internal feedback stays in execution traces instead of being appended to the answer. A focused test covers this fix. A separate model regression check was also run during development; its result and trace have been archived locally rather than included in the submission. The original 7/8 score is preserved; the regression is not a fresh held-out evaluation.
 
 ## Development failures
 
-Saved development traces include unsuccessful runs as well as successful ones:
+Development exposed the following failures. Intermediate development runs have been archived locally rather than included in the submission:
 
-- Initially the writer supplied correct structured source IDs but omitted inline brackets. A strict formatting guard caused unnecessary abstention. Source IDs now drive the Sources panel, and application checks reject nonexistent IDs.
+- Initially the writer supplied correct structured source IDs but omitted inline brackets. A strict formatting guard caused unnecessary abstention. Source IDs now drive the UI citations, and application checks reject nonexistent IDs.
 - Both tested 4B and 9B variants initially answered an ambiguous claim question with a menu of alternatives. An explicit scope-check field before the routing decision produced the required clarification behavior; 9B was not selected simply because it was larger.
 - A nullable clarification object remained null even when the model selected `clarify`. A consistently shaped object is now used, with a non-displayed placeholder for other decisions.
 - The verifier requested extra details beyond the user's question, exhausting the correction limit. Its instructions were narrowed to correctness and completeness for the actual request.
@@ -45,13 +43,25 @@ All four final development cases completed as intended. The final held-out run u
 
 ## Required demonstration traces
 
-1. **Success, full three-agent flow:** `traces/dev-3d7751895f054b168499251627d6083c.jsonl`. Explicit travel-expense deadline question; retrieval, researcher assessment, writer draft, verifier acceptance, final response. No clarification required.
-2. **Ambiguous-request edge case with a real human reply:** `traces/demo-0a2a635d6a514254b2e533495f1776a8.jsonl`. Question: “When should I submit my claim?” The agent asked which claim type. The actual user selected “Travel expense”; the same graph run resumed and answered with the 30-calendar-day rule. This trace records real human input, not an evaluation fixture.
+1. **Success, full three-agent flow:** [traces/success.jsonl](traces/success.jsonl). Explicit travel-expense deadline question; retrieval, researcher assessment, writer draft, verifier acceptance, final response. No clarification required.
+2. **Ambiguous-request edge case with a real human reply:** [traces/clarification.jsonl](traces/clarification.jsonl). Question: “When should I submit my claim?” The agent asked which claim type. The actual user selected “Travel expense”; the same graph run resumed and answered with the 30-calendar-day rule. This trace records real human input, not an evaluation fixture.
 
-Additional live Streamlit integration check: `traces/ui-check-d7f2541fbe8549ad99fc88f9fdadfffe.jsonl`. Its reply is explicitly labelled automated. It verified chat interruption, resume, source display, disabled input after completion, and no additional model calls on rerender. The focused suite has 13 passing tests covering graph boundaries, failure reporting, trace protection, UI routing, and diagnostic leakage.
+An additional historical Streamlit integration check used an explicitly labelled automated reply. It verified chat interruption, resume, source display, disabled input after completion in the earlier interface, and no additional model calls on rerender. At that stage the focused suite had 13 passing tests. Its trace has been archived locally; the current UI allows a new question directly after completion, and the automated suite has since expanded.
+
+## Retained submission evidence
+
+`eval-agents.json` retains the original evaluation outputs byte for byte under a shorter filename. `reviewed_scores.json` supplies the reviewed labels, and `scripts/summarize_results.py` reproduces `evaluation.json` from those two files. The answers, scores, model metadata, and timings are unchanged.
+
+Only the two full demonstration traces above are included. The `trace` fields inside the evaluation outputs preserve original per-case run paths; those detailed logs are archived locally and are not repository links. Development runs, ordinary chat sessions, and regression logs are excluded from the submitted results folder. The retained traces preserve their original event IDs and contents and describe the earlier implementation, not a fresh execution of the current revision.
 
 ## What this establishes
 
-The implementation meets the Track A collaboration, tool-use, observability, and human-checkpoint behaviors on the demonstrated cases. The evaluation does not establish an accuracy benefit from multiple agents: the baseline was faster and performed better on the frozen small set. The graph's value here is explicit control over clarification and review. In a real deployment, retain the simpler baseline unless evidence shows that the additional control is worth its latency and complexity.
+### Subsequent prompt revision
+
+On 27 October 2026, system prompts were moved to `src/policy_qa/prompts.py` and revised as prompt version 2. Role tasks, evidence boundaries, clarification versus missing-fact decisions, and schema contracts are now explicit. Retrieval uses the same shared evidence rules. New graph traces record the prompt version.
+
+Development checks of the four existing cases with this prompt revision confirmed the direct deadline, clarification/resume, missing-policy abstention and incident-contact behaviors against the source sections. The clarification reply was simulated, as recorded in the archived run. The 13 focused tests at that stage also passed. These are development checks, not a fresh held-out evaluation or evidence of an accuracy improvement. The frozen scores above describe the original evaluated configuration.
+
+The implementation demonstrates the Track A collaboration, tool-use, observability, and human-checkpoint behaviors on the recorded cases. The graph provides explicit control over clarification and review, with additional model calls and latency. The small synthetic evaluation does not establish production reliability or prove that separate agents improve answer quality.
 
 Before production, use real permissioned policies, independently review evaluation labels, test contradictory versions and prompt injection, and add retrieval-time authorization and durable session state. These are limitations and future alternatives, not implemented features.

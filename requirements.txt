@@ -41,6 +41,7 @@ jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 kubernetes==37.0.1
 langchain-core==1.7.0
+langchain-ollama==1.1.0
 langchain-protocol==0.0.20
 langgraph==1.2.17
 langgraph-checkpoint==4.3.0
@@ -56,6 +57,7 @@ narwhals==2.27.1
 numpy==2.5.4
 oauthlib==4.0.0
 onnxruntime==1.31.0
+ollama==0.6.3
 opentelemetry-api==1.45.1
 opentelemetry-exporter-otlp-common==0.66b1
 opentelemetry-exporter-otlp-proto-common==1.45.1

@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
-from policy_qa.ui import app
 
-app()
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
+from policy_qa.ui import main
+
+main()

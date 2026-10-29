@@ -3,7 +3,20 @@ reference/
 .env
 __pycache__/
 .pytest_cache/
+.ruff_cache/
 .runtime/
 *.docx
-results/traces/live-*.jsonl
-results/traces/test-*.jsonl
+
+# Temporary tests, logs, and document previews.
+/tmp/
+
+# New run outputs; already-tracked evaluation evidence stays versioned.
+/results/dev-*.json
+/results/eval-*.json
+/results/traces/*.jsonl
+!/results/eval-agents.json
+!/results/traces/success.jsonl
+!/results/traces/clarification.jsonl
+
+
+dev-sandbox/
